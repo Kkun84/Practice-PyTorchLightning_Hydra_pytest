@@ -1,0 +1,36 @@
+callback:
+  checkpoint: null
+  early_stopping:
+    class: pytorch_lightning.callbacks.EarlyStopping
+    params:
+      min_delta: 0
+      mode: min
+      monitor: val_loss
+      patience: 6
+      verbose: false
+  others: null
+hparams:
+  batch_size: 512
+  lr: 0.001
+  num_workers: 4
+loggers:
+- class: pytorch_lightning.loggers.TensorBoardLogger
+  params:
+    name: ''
+    save_dir: .
+    version: ''
+model_params:
+  hidden_dim: 32
+name: ''
+optim:
+  optimizer:
+    class: torch.optim.Adam
+    params:
+      lr: ${hparams.lr}
+  scheduler: null
+seed: null
+trainer:
+  class: pytorch_lightning.Trainer
+  params:
+    gpus: 0
+    num_nodes: 1

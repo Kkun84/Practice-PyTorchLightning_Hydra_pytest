@@ -1,0 +1,50 @@
+[2020-05-25 21:08:10,398][__main__][INFO] - 
+callback:
+  checkpoint: null
+  early_stopping:
+    class: pytorch_lightning.callbacks.EarlyStopping
+    params:
+      min_delta: 0
+      mode: min
+      monitor: val_loss
+      patience: 6
+      verbose: false
+  others: null
+hparams:
+  batch_size: 512
+  lr: 0.001
+  num_workers: 4
+loggers:
+- class: pytorch_lightning.loggers.TensorBoardLogger
+  params:
+    name: ''
+    save_dir: .
+    version: ''
+model_params:
+  hidden_dim: 32
+name: ''
+optim:
+  optimizer:
+    class: torch.optim.Adam
+    params:
+      lr: ${hparams.lr}
+  scheduler: null
+seed: null
+trainer:
+  class: pytorch_lightning.Trainer
+  params:
+    gpus: 0
+    num_nodes: 1
+
+[2020-05-25 21:08:10,400][lightning][INFO] - GPU available: False, used: False
+[2020-05-25 21:08:10,400][lightning][WARNING] - No environment variable for node rank defined. Set as 0.
+[2020-05-25 21:08:10,400][__main__][INFO] - Setting early_stop_callback.
+[2020-05-25 21:08:10,400][__main__][INFO] - Setting logger.
+[2020-05-25 21:08:10,400][__main__][INFO] - Start trainer.fit().
+[2020-05-25 21:08:11,929][lightning][INFO] - 
+  | Name    | Type   | Params
+-------------------------------
+0 | linear0 | Linear | 25 K  
+1 | linear1 | Linear | 330   
+[2020-05-25 21:09:49,683][__main__][INFO] - Start trainer.test().
+[2020-05-25 21:09:50,282][__main__][INFO] - All done.
