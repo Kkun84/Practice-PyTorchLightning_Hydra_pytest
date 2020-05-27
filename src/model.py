@@ -25,9 +25,9 @@ class Model(network.Discriminator):
     def configure_optimizers(self):
         logger.debug('configure_optimizers')
         optim = hydra.utils.instantiate(self.optim.optimizer, self.parameters())
-        if self.optim.scheduler:
-            scheduler = hydra.utils.instantiate(self.optim.scheduler, optim)
-            return [optim], [scheduler]
+        if self.optim.lr_scheduler:
+            lr_scheduler = hydra.utils.instantiate(self.optim.lr_scheduler, optim)
+            return [optim], [lr_scheduler]
         return [optim], []
 
     def prepare_data(self):

@@ -1,3 +1,7 @@
+defaults:
+  - optimizer: Adam
+  - lr_scheduler: Step
+
 name: ''
 seed: ~
 
@@ -10,33 +14,31 @@ model_params:
   hidden_dim: 32
 
 optim:
-  optimizer:
-    class: torch.optim.Adam
-    params:
-      lr: ${hparams.lr}
-  scheduler:
-    # class: torch.optim.lr_scheduler.StepLR
-    # params:
-    #   step_size: 20
-    #   gamma: 0.5
+  optimizer: ${optimizer}
+  lr_scheduler: ${lr_scheduler}
 
 trainer:
-  class: pytorch_lightning.Trainer
-  params:
-    gpus: 0
-    num_nodes: 1
+  gpus: 0
+  num_nodes: 1
 
 callback:
   checkpoint:
+    class: pytorch_lightning.callbacks.ModelCheckpoint
+    params:
+      filepath: ~
+      monitor: val_loss
+      verbose: False
+      save_top_k: 3
+      mode: auto
   early_stopping:
     class: pytorch_lightning.callbacks.EarlyStopping
     params:
-      monitor: 'val_loss'
+      monitor: val_loss
       min_delta: 0
-      patience: 6
+      patience: 10
       verbose: False
-      mode: min
-  others:
+      mode: auto
+  callbacks:
     ~
 
 loggers:
