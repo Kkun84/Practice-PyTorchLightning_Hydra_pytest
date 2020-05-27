@@ -71,7 +71,9 @@ def batch(batch_size):
 
 @pytest.fixture
 def model_params():
-    return hydra.utils.DictConfig(dict())
+    return hydra.utils.DictConfig(dict(
+        hidden_dim=32,
+    ))
 
 
 @pytest.fixture
