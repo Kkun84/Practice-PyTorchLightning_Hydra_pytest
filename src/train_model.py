@@ -2,7 +2,7 @@ from logging import getLogger
 import hydra
 import pytorch_lightning as pl
 
-from src.model import Model
+from .model import Model
 
 
 logger = getLogger(__name__)
