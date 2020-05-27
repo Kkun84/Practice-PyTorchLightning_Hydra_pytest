@@ -5,7 +5,7 @@ import pytest
 from src.network import Discriminator
 
 
-def test_load_numbers_sorted(batch, model_params):
+def test_Discriminator(batch, model_params):
     assert issubclass(Discriminator, torch.nn.Module)
 
     discriminator = Discriminator(model_params)
